@@ -3,7 +3,8 @@ import {Link} from "react-router-dom";
 
 function RegisterScreen() {
 
-    const handleLogin = () => {
+    const handleRegister = (e: any) => {
+        e.preventDefault();
         // history.replace("/dashboard");
     }
 
@@ -19,7 +20,7 @@ function RegisterScreen() {
                     <h2 className="text-center text-4xl text-blue-900 font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold">Register</h2>
                     <div className="mt-4 py-4">
-                        <form>
+                        <form onSubmit={handleRegister}>
                             <div>
                                 <div className="text-sm font-bold text-gray-700 tracking-wide">Full name</div>
                                 <input
@@ -59,14 +60,14 @@ function RegisterScreen() {
                             <div className="mt-8">
                                 <button className="bg-blue-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-blue-600
-                                shadow-lg" onClick={handleLogin}>
+                                shadow-lg" type="submit">
                                     Register
                                 </button>
                             </div>
                         </form>
                         <div className="mt-8 text-sm font-display font-semibold text-gray-700 text-center">
-                            Have an account ? <Link className="cursor-pointer text-red-600 hover:text-red-800"
-                                                    to="/auth/login">
+                            Already registered? <Link className="cursor-pointer text-red-600 hover:text-red-800"
+                                                      to="/auth/login">
                             Log in
                         </Link>
                         </div>

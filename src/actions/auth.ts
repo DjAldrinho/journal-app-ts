@@ -1,5 +1,5 @@
 import {firebase, googleAuthProvider} from "../config/firebaseConfig";
-import {finishLoading, startLoading} from "./ui";
+import {finishLoading, setError, startLoading} from "./ui";
 import {types} from "../types/types";
 
 
@@ -17,6 +17,7 @@ export const loginWithEmailAndPassword = (email: string, password: string) => {
             .catch(e => {
                 console.log(e);
                 dispatch(finishLoading());
+                dispatch(setError("User or password incorrect"))
             });
     }
 }

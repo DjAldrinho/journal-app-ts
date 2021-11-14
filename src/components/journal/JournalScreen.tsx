@@ -1,21 +1,13 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
-import {startLogout} from "../../actions/auth";
+import Sidebar from "./Sidebar";
 
 function JournalScreen() {
-
-    const dispatch = useDispatch();
-
-    const handleLogout = () => {
-        dispatch(startLogout());
-    }
-
     return (
-        <div>
-            <h1>Journal Screen</h1>
-            <button onClick={handleLogout}>
-                Logout
-            </button>
+        <div className="flex bg-white h-screen w-screen">
+            <Sidebar/>
+            <main className="flex-grow">
+                Main
+            </main>
         </div>
     )
 }

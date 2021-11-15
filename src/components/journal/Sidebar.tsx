@@ -3,6 +3,7 @@ import {faCalendar, faSignOutAlt} from "@fortawesome/free-solid-svg-icons"
 import React from "react";
 import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
 import {startLogout} from "../../actions/auth";
+import {startNewNote} from "../../actions/note";
 
 
 function Sidebar() {
@@ -15,7 +16,7 @@ function Sidebar() {
     }
 
     const handleNewEntry = () => {
-        console.log("New Entry")
+        dispatch(startNewNote());
     }
 
     return (

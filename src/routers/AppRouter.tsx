@@ -7,6 +7,7 @@ import {PrivateRoute} from "./PrivateRoute";
 import {useDispatch} from "react-redux";
 import {firebase} from "../config/firebaseConfig";
 import {login} from "../actions/auth";
+import {startLoadingNotes} from "../actions/note";
 
 function AppRouter() {
 
@@ -24,6 +25,7 @@ function AppRouter() {
             if (user?.uid) {
                 dispatch(login(user.uid, user.displayName));
                 setIsLoggedIn(true);
+                dispatch(startLoadingNotes(user.uid));
             } else {
                 setIsLoggedIn(false);
             }

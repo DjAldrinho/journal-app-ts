@@ -4,6 +4,7 @@ import React from "react";
 import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
 import {startLogout} from "../../actions/auth";
 import {startNewNote} from "../../actions/note";
+import JournalEntry from "./JournalEntry";
 
 
 function Sidebar() {
@@ -38,14 +39,7 @@ function Sidebar() {
                 </div>
             </div>
             <div>
-                <a href="#" className="block py-3 px-6 hover:bg-blue-900 hover:text-white
-                text-blue-600 font-semibold border-b border-blue-600">
-                    Google
-                </a>
-                <a href="#" className="block py-3 px-6 hover:bg-blue-900 hover:text-white
-                text-blue-600 font-semibold border-b border-blue-600">
-                    Facebook
-                </a>
+                <JournalEntry/>
             </div>
         </div>
     )

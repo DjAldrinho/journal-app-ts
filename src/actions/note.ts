@@ -25,24 +25,52 @@ export const startNewNote = () => {
     }
 }
 
-export const activeNote = (id: number, note: INote) => ({
-    type: types.notesActive,
+export const activeNote = (id: string, note: INote) => ({
+    type: types.activeNote,
     payload: {
         id,
         ...note
     }
 });
 
-export const addNewNote = (id: number, note: INote) => ({
-    type: types.notesAddNew,
+export const addNewNote = (id: string, note: INote) => ({
+    type: types.addNote,
     payload: {
         id, ...note
     }
 });
 
+export const setActiveNote = (id: string) => {
+    return async (dispatch: any, getState: any) => {
+
+        const {uid} = getState().auth;
+
+        let loadNote: INote = {
+            id: '',
+            title: '',
+            body: '',
+            date: 0
+        };
+
+        try {
+            const note: any = await db.doc(`${uid}/journal/notes/${id}`).get();
+
+            loadNote = {
+                id: note.id,
+                ...note.data()
+            }
+
+            dispatch(activeNote(note.id, loadNote));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export const noteLogout = () => ({
     type: types.notesLogoutCleaning
 });
+
 
 export const startLoadingNotes = (uid: string) => {
     return async (dispatch: any) => {
@@ -54,7 +82,7 @@ export const startLoadingNotes = (uid: string) => {
 }
 
 export const setNotes = (notes: INote[]) => ({
-    type: types.notesLoad,
+    type: types.loadNotes,
     payload: notes
 });
 

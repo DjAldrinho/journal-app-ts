@@ -9,27 +9,24 @@ const initialState = {
 export const notesReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
 
-        case types.notesActive:
+        case types.loadNotes:
+            return {
+                ...state,
+                notes: [...action.payload]
+            }
+        case  types.addNote:
+            return {
+                ...state,
+                notes: [action.payload, ...state.notes]
+            }
+        case types.activeNote:
             return {
                 ...state,
                 active: {
                     ...action.payload
                 }
             }
-
-        case  types.notesAddNew:
-            return {
-                ...state,
-                notes: [action.payload, ...state.notes]
-            }
-
-        case types.notesLoad:
-            return {
-                ...state,
-                notes: [...action.payload]
-            }
-
-        case types.notesUpdated:
+        case types.updateNote:
             return {
                 ...state,
                 notes: state.notes.map(
@@ -38,8 +35,7 @@ export const notesReducer = (state: any = initialState, action: any) => {
                         : note
                 )
             }
-
-        case types.notesDelete:
+        case types.deleteNote:
             return {
                 ...state,
                 active: null,

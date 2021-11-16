@@ -1,6 +1,7 @@
 import {db} from "../config/firebaseConfig";
 import {types} from "../types/types";
 import INote from "../interfaces/INote";
+import {setMessage} from "./ui";
 
 export const startNewNote = () => {
     return async (dispatch: any, getState: any) => {
@@ -100,3 +101,52 @@ export const loadNotes = async (uid: string) => {
 
     return notes;
 }
+
+
+export const startSaveNote = (note: INote) => {
+    return async (dispatch: any, getState: any) => {
+
+        const {uid} = getState().auth;
+
+        const noteToFirestore: INote = {...note};
+
+        delete noteToFirestore.id;
+
+        await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+
+        dispatch(refreshNote(note.id, noteToFirestore));
+
+        dispatch(setMessage(`${note.title} updated!`));
+    }
+}
+
+export const refreshNote = (id: string | undefined, note: INote) => ({
+    type: types.updateNote,
+    payload: {
+        id,
+        note: {
+            id,
+            ...note
+        }
+    }
+});
+
+export const startDeleting = (id: string) => {
+    return async (dispatch: any, getState: any) => {
+
+        const uid = getState().auth.uid;
+
+        await db.doc(`${uid}/journal/notes/${id}`).delete();
+
+        dispatch(deleteNote(id));
+
+        dispatch(setMessage(`Note deleted!`));
+
+    }
+}
+
+export const deleteNote = (id: string) => ({
+    type: types.deleteNote,
+    payload: id
+});
+

@@ -20,7 +20,7 @@ function JournalEntry() {
             {
                 notes.map((note: INote, i: number) => {
                     return (
-                        <div className="block py-3 px-6 hover:bg-blue-900 hover:text-white
+                        <div className="flex flex-wrap py-3 px-6 hover:bg-blue-900 hover:text-white
                 text-blue-600 font-semibold border-b border-blue-600 cursor-pointer"
                              key={note.id} onClick={() => setNoteActive(note.id)}>
                             <div className="flex flex-row justify-between align-middle items-center">
@@ -28,10 +28,7 @@ function JournalEntry() {
                                 <div className="px-2">{note.title}</div>
                                 <div className="px-3 flex flex-col items-center align-middle">
                                     <div>
-                                        {moment(note.date).format("dddd")}
-                                    </div>
-                                    <div>
-                                        {moment(note.date).format("Do")}
+                                        {moment(note.date).format("DD/MM/YYYY")}
                                     </div>
                                 </div>
                             </div>

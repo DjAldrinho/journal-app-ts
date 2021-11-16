@@ -7,6 +7,16 @@ const initialState = {
 
 export const uiReducer = (state = initialState, action: any) => {
     switch (action.type) {
+        case types.uiSetMessage:
+            return {
+                ...state,
+                msg: action.payload
+            }
+        case types.uiRemoveMessage:
+            return {
+                ...state,
+                msg: null
+            }
         case types.uiSetError:
             return {
                 ...state,

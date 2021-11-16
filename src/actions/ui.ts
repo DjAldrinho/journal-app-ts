@@ -1,5 +1,11 @@
 import {types} from '../types/types';
 
+
+export const setMessage = (msg: string) => ({
+    type: types.uiSetMessage,
+    payload: msg
+});
+
 export const setError = (err: any) => ({
     type: types.uiSetError,
     payload: err
@@ -7,6 +13,10 @@ export const setError = (err: any) => ({
 
 export const removeError = () => ({
     type: types.uiRemoveError
+});
+
+export const removeMsg = () => ({
+    type: types.uiRemoveMessage
 });
 
 export const startLoading = () => ({

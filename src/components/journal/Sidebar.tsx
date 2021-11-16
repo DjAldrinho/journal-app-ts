@@ -21,7 +21,7 @@ function Sidebar() {
     }
 
     return (
-        <div className="w-64 bg-gray-800 border-r-4 border-blue-600 shadow-lg">
+        <div className="w-auto bg-gray-800 border-r-4 border-blue-600 shadow-lg">
             <div
                 className="flex flex-col justify-center items-center py-4 text-white text-center font-semibold text-3xl italic">
                 <div><span>Journal App</span></div>

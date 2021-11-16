@@ -2,6 +2,9 @@ export const types = {
     login: '[Auth] Login',
     logout: '[Auth] Logout',
 
+    uiSetMessage: '[UI] Set Message',
+    uiRemoveMessage: '[UI] Remove Message',
+
     uiSetError: '[UI] Set Error',
     uiRemoveError: '[UI] Remove Error',
 
